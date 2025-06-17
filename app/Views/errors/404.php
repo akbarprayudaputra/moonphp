@@ -8,7 +8,7 @@ extract(($data));
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Error</title>
+    <title>MoonPHP Error 404</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -48,6 +48,9 @@ extract(($data));
         <h1>Error <span class="code"><?= $code ?></span></h1>
         <p><?= $message ?></p>
     </div>
+    <footer style="text-align: center; padding: 10px; background-color: #f8f8f8; font-size: 14px; color: #333;">
+        &copy; <?php echo date('Y'); ?> MoonPHP 🌑
+    </footer>
 
 </body>
 

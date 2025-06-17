@@ -27,14 +27,22 @@ class Router
         $method = $_SERVER["REQUEST_METHOD"];
 
         foreach (self::$routes as $route) {
-            if ($path == $route["path"] && $method == $route["method"]) {
+            $pattern = "#^" . $route["path"] . "$#";
+            if (preg_match($pattern, $path, $variables) && $method == $route["method"]) {
+                if (!class_exists($route["controller"])) {
+                    throw new \Exception("Controller {$route['controller']} tidak ditemukan", 404);
+                }
+
                 $controller = new $route["controller"];
                 $function = $route["function"];
-                $controller->$function();
+
+                array_shift($variables); // Menghapus elemen pertama yang merupakan path itu sendiri
+                call_user_func_array([$controller, $function], $variables);
+
                 return;
             }
         }
 
-        throw new \Exception("Route not found for path: $path and method: $method", 404);
+        throw new \Exception("Route tidak ditemukan pada path: $path dan method: $method", 404);
     }
 }

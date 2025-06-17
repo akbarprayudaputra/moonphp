@@ -1,12 +1,10 @@
 <?php
 
 use Moonphp\Moonphp\App\Router;
-use Moonphp\Moonphp\Controllers\HomeController;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-Router::add("GET", "/", "HomeController", "index");
-Router::add("GET", "/home", HomeController::class, "index");
+require_once __DIR__ . '/../routes/web.php';
 
 try {
     Router::run();
