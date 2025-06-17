@@ -4,12 +4,12 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "Akbarprayudaputra\\Moonphp\\": "app/"
+            "Moonphp\\Moonphp\\": "app"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Akbarprayudaputra\\Moonphp\\Tests\\": "tests/"
+            "Moonphp\\Moonphp\\Tests\\": "tests/"
         }
     },
     "authors": [
