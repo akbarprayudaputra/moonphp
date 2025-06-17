@@ -1,6 +1,6 @@
 <?php
 
-namespace Moonphp\Moonphp\App\Controllers;
+namespace Moonphp\Moonphp\Controllers;
 
 class HomeController
 {
