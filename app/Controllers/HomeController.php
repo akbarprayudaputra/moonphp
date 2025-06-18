@@ -3,6 +3,7 @@
 namespace Moonphp\Moonphp\Controllers;
 
 use Moonphp\Moonphp\App\View;
+use Moonphp\Moonphp\Models\User;
 
 class HomeController
 {
