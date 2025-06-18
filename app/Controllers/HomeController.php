@@ -8,7 +8,6 @@ class HomeController
 {
     public function index(): void
     {
-        // echo "Welcome to the Home Page!";
         echo View::render("home/index", [
             'title' => 'Home Page',
             'message' => 'Welcome to the Home Page!'

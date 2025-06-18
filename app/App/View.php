@@ -11,7 +11,7 @@ class View
         if (file_exists($viewPath)) {
             extract($data);
             ob_start();
-            include $viewPath;
+            require $viewPath;
             return ob_get_clean();
         } else {
             throw new \Exception("View  '$view' tidak ditemukan.", 404);

@@ -6,13 +6,14 @@ class Router
 {
     private static $routes = [];
 
-    public static function add(string $method, string $path, string $controller, string $function): void
+    public static function add(string $method, string $path, string $controller, string $function, array $middlewares = []): void
     {
         self::$routes[] = [
             "method" => $method,
             "path" => $path,
             "controller" => $controller,
-            "function" => $function
+            "function" => $function,
+            "middlewares" => $middlewares
         ];
     }
 
@@ -31,6 +32,17 @@ class Router
             if (preg_match($pattern, $path, $variables) && $method == $route["method"]) {
                 if (!class_exists($route["controller"])) {
                     throw new \Exception("Controller {$route['controller']} tidak ditemukan", 404);
+                }
+
+                foreach ($route["middlewares"] as $middleware) {
+                    if (!class_exists($middleware)) {
+                        throw new \Exception("Middleware '{$middleware}' tidak ditemukan", 404);
+                    }
+
+                    $middlewareInstance = new $middleware;
+                    if (method_exists($middlewareInstance, 'before')) {
+                        $middlewareInstance->before();
+                    }
                 }
 
                 $controller = new $route["controller"];
