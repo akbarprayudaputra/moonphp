@@ -56,5 +56,6 @@ class Router
         }
 
         throw new \Exception("Route tidak ditemukan pada path: $path dan method: $method", 404);
+
     }
 }

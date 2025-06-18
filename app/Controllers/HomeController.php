@@ -3,6 +3,7 @@
 namespace Moonphp\Moonphp\Controllers;
 
 use Moonphp\Moonphp\App\View;
+use Moonphp\Moonphp\Helpers\Json;
 use Moonphp\Moonphp\Models\User;
 
 class HomeController
@@ -17,6 +18,9 @@ class HomeController
 
     public function detail(int $id): void
     {
-        echo "Detail Page for ID: $id";
+        echo Json::encode([
+            'status' => 'success',
+            'message' => "Detail page for user with ID: $id",
+        ]);
     }
 }

@@ -15,11 +15,21 @@ try {
 
     Router::run();
 } catch (\Throwable $th) {
-    $data = [
-        "status" => "error",
-        "message" => $th->getMessage(),
-        "code" => $th->getCode()
-    ];
+    switch ($_ENV["API"]) {
+        case 'true':
+            header("Content-Type: application/json");
+            http_response_code($th->getCode() ?: 500);
+            echo json_encode(array("error" => $th->getMessage()));
+            break;
 
-    require_once __DIR__ . '/../app/Views/errors/404.php';
+        default:
+            $data = [
+                "status" => "error",
+                "message" => $th->getMessage(),
+                "code" => $th->getCode()
+            ];
+
+            require_once __DIR__ . '/../app/Views/errors/404.php';
+            break;
+    }
 }
